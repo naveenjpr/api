@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div class="w-[100%]">
+        <div class="w-[90%] mx-auto ">
+            <div class="grid border-2 boder-[grey] sm:grid-cols-3 grid-cols-1 gap-[10px] p-[10px]" id="res">
+
+
+
+            </div>
+        </div>
+    </div>
+
+</body>
+<script>
+    let res = document.querySelector("#res");
+
+    let displayData = async () => {
+        let data = await fetch('https://dummyjson.com/products')
+        let finalData = await data.json();
+        console.log(finalData)
+        let fData = finalData.products;
+
+        fData.forEach(element => {
+
+            console.log(element)
+            res.innerHTML += ` 
+            <div class="border-[2px] border-orange-600">
+                    <img src=${element.thumbnail}
+                        class="w-[100%] h-[300px]" alt="">
+                        <div> product number :${element.id}</div>
+                    <div  class="border-[1px] border-orange-600 flex">
+
+                        
+                        <h3>brand Name :${element.brand}</h3>
+                    </div>
+
+                    <div
+                    
+                    
+                    class="border-[1px] border-orange-600 flex">
+                    
+                    
+                    
+                    <h1>price : ${element.price}</h1>
+                   
+                    </div>
+
+                    <div  class="border-[1px] border-orange-600 flex">
+                        
+                        <h3>description :${element.description}</h3>
+                    </div>
+
+                    <div class="border-[1px] border-orange-600 flex">
+                        
+                        
+                        <h3>category:${element.category}</h3>
+                        
+                    </div>
+
+                    <div>
+                        <h3>Percentage</h3>
+                        <h3>${element.discountPercentage}</h3>
+                    </div>
+
+                   
+            </div>
+            `
+        });
+
+
+    }
+
+    displayData()
+</script>
+
+</html>

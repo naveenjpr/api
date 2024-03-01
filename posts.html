@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div class="w-[100%]">
+        <div class="max-w-[90%] mx-auto ">
+            <div class="grid sm:grid-cols-3 grid-cols-1" id="res">
+
+
+            </div>
+
+
+
+
+
+
+        </div>
+
+    </div>
+
+
+
+</body>
+<script>
+    let res = document.querySelector("#res");
+    let dataDisplay = async () => {
+        let data = await fetch('https://dummyjson.com/posts')
+        let finalData = await data.json();
+        let fData = finalData.posts;
+        fData.forEach(v => {
+            console.log(v)
+            res.innerHTML += `<div class="max-w-lg mx-auto bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="p-6">
+                        <h2 class="text-xl font-bold text-gray-800">${v.title}</h2>
+                        <p class="mt-2 text-gray-600">${v.body}</p>
+                        <div class="mt-4">
+                            <span
+                                class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">Tags::${v.tags}</span>
+                            
+                        </div>
+                        <div class="mt-4 flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500 mr-1" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-gray-700">Reactions: ${v.reactions}</span>
+                        </div>
+                    </div>
+                </div>`
+        });
+    }
+    dataDisplay()
+</script>

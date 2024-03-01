@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div class="w-[100%]">
+        <div class="w-[90%] mx-auto">
+
+            <div class="grid sm:grid-cols-3 grid-cols-1 gap-[10px]  " id="res">
+
+
+            </div>
+        </div>
+
+    </div>
+
+
+</body>
+<script>
+    let res = document.querySelector('#res')
+    let displayData = async () => {
+
+
+
+        let data = await fetch('https://dummyjson.com/carts')
+        let finalData = await data.json()
+        // console.log(finalData)
+        let fData = finalData.carts
+        // console.log(fData)
+        fData.forEach((v, i) => {
+            console.log(v.products[0].thumbnail)
+
+            res.innerHTML += `<div class="border " >
+                    <div>
+
+                        <img src="${v.products[0].thumbnail}" class="w-[100%] h-[300px]"
+                            alt=""/>
+                    </div>
+                    <div class="border-b-4 border-indigo-500 flex">
+                       <span> id: </span><h1>${v.products[0].id}</h1>
+                    </div>
+                    <div class="border-b-4 border-indigo-500 flex">
+                        title:<h1>${v.products[0].title
+                }</h1>
+                    </div>
+                    <div class="border-b-4 border-indigo-500 flex">
+                        price:<h1>${v.products[0].price
+                }</h1>
+                    </div>
+                    <div class="border-b-4 border-indigo-500 flex">
+                        quantity:<h1>${v.products[0].quantity
+                }</h1>
+                    </div>
+                    <div class="border-b-4 border-indigo-500 flex">
+                        total:<h1>${v.products[0].total
+                }</h1>
+                    </div>
+                    <div class="border-b-4 border-indigo-500 flex">
+                        userId:<h1>${v.products[0].discountPercentage
+                }</h1>
+                    </div>
+                    <div class="border-b-4 border-indigo-500 flex">
+                        discountedPrice:<h1>${v.products[0].discountedPrice}</h1>
+                    </div>
+
+
+                </div>
+`;
+        })
+
+    }
+    displayData()
+
+</script>
+
+</html>
+<!-- 
+discountedTotal
+: 
+459
+id
+: 
+12
+products
+: 
+(5) [{…}, {…}, {…}, {…}, {…}]
+total
+: 
+534
+totalProducts
+: 
+5
+totalQuantity
+: 
+11
+userId
+: 
+52 -->
+<!-- {
+          "id": 59,
+          "": "Spring and summershoes",
+          "price": 20,
+          "quantity": 3,
+          "total": 60,
+          "discountPercentage": 8.71,
+          "discountedPrice": 55,
+          "thumbnail": "https://cdn.dummyjson.com/product-images/59/thumbnail.jpg"
+        }, -->

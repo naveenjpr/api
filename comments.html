@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div class="w-[100%]">
+        <div class="w-[90%] mx-auto">
+
+            <div class="grid sm:grid-cols-3 grid-cols-1 gap-[10px]  " id="res">
+
+
+            </div>
+        </div>
+
+    </div>
+
+
+</body>
+<script>
+    let res = document.querySelector("#res")
+    let displayData = async () => {
+        let data = await fetch('https://dummyjson.com/comments');
+        let finalData = await data.json();
+        let fData = finalData.comments
+        fData.forEach(v => {
+            console.log(v)
+            res.innerHTML += `<div class="max-w-lg mx-auto bg-white rounded-xl shadow-md overflow-hidden">
+                <h1 class="text-center">comments</h1>
+                    <div class="p-6">
+
+                        <p class="text-gray-800">ID::${v.id}</p>
+                        <p class="text-gray-800">${v.body}</p>
+                        <div class="mt-4 flex flex-col items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500 mr-1" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-gray-700">postId::${v.postId}</span>
+                            <span class="text-gray-700">id::${v.user.id}</span>
+                            <span class="text-gray-700">username::${v.user.username}</span>
+                        </div>
+                    </div>
+                </div>`
+
+        });
+    }
+    displayData()
+</script>
+
+</html>
