@@ -29,50 +29,25 @@
         console.log(finalData)
         let fData = finalData.products;
 
-        fData.forEach(element => {
+        fData.forEach(v => {
 
-            console.log(element)
+            console.log(v)
             res.innerHTML += ` 
-            <div class="border-[2px] border-orange-600">
-                    <img src=${element.thumbnail}
-                        class="w-[100%] h-[300px]" alt="">
-                        <div> product number :${element.id}</div>
-                    <div  class="border-[1px] border-orange-600 flex">
-
-                        
-                        <h3>brand Name :${element.brand}</h3>
-                    </div>
-
-                    <div
-                    
-                    
-                    class="border-[1px] border-orange-600 flex">
-                    
-                    
-                    
-                    <h1>price : ${element.price}</h1>
-                   
-                    </div>
-
-                    <div  class="border-[1px] border-orange-600 flex">
-                        
-                        <h3>description :${element.description}</h3>
-                    </div>
-
-                    <div class="border-[1px] border-orange-600 flex">
-                        
-                        
-                        <h3>category:${element.category}</h3>
-                        
-                    </div>
-
-                    <div>
-                        <h3>Percentage</h3>
-                        <h3>${element.discountPercentage}</h3>
-                    </div>
-
-                   
-            </div>
+            <div class="max-w-xs rounded overflow-hidden shadow-lg hover:bg-[#00000066] cursor-pointer">
+  <img class="w-full h-[250px]" src="${v.thumbnail}" alt="Product Thumbnail">
+  <div class="px-6 py-4">
+    <div class="font-bold text-xl mb-2">${v.title}</div>
+    <p class="text-gray-700 text-base">
+      ${v.description}
+    </p>
+    <p class="text-gray-700 text-base mt-2">Price: ${v.price}</p>
+    <p class="text-gray-700 text-base">Discount: ${v.discountPercentage}</p>
+    <p class="text-gray-700 text-base">Rating: ${v.rating}</p>
+    <p class="text-gray-700 text-base">Stock: ${v.stock}</p>
+    <p class="text-gray-700 text-base">Brand: ${v.brand}</p>
+    <p class="text-gray-700 text-base">Category: ${v.category}</p>
+  </div>
+</div>
             `
         });
 
